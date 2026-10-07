@@ -1,7 +1,7 @@
 import { sequelize } from "../config/database.js";
 import { DataTypes } from "sequelize";
-import { UserModel } from "./user.models.js";
-import { RoleModel } from "./role.models.js";
+import { UserModel } from "./user.model.js";
+import { RoleModel } from "./role.model.js";
 
 export const UserRoleModel = sequelize.define(
     "User_Role", 
@@ -10,11 +10,20 @@ export const UserRoleModel = sequelize.define(
 id:{
     type:DataTypes.INTEGER,
     primaryKey:true, //indica que el id es la clave primaria
-    allowNull:false,
-    unique: true,
+    //allowNull:false,
+    //unique: true,
     autoIncrement: true,
 },
-},  
+user_id: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+        },
+
+        role_id: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+        },
+    }
 );
 
 //relaciones

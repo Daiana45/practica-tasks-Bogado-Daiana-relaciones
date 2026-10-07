@@ -1,5 +1,5 @@
 import { Router } from "express";
-import {createTask, getTask, getTasksById, deleteTask, updateTask } from "../controllers/task.controllers.js"
+import {createTask, getTask, getTasksById, deleteTask, updateTask } from "../controllers/task.controller.js"
 
 export const taskRoutes = Router();
 taskRoutes.post("/", createTask); //router.post responde al metodo http post(crear).

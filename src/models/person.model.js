@@ -1,6 +1,5 @@
 import { sequelize } from "../config/database.js";
 import { DataTypes } from "sequelize";
-import { UserModel } from "./user.models.js";
 
 export const PersonModel = sequelize.define(
     "Person", {
@@ -12,6 +11,6 @@ export const PersonModel = sequelize.define(
     Lastname:{
         type: DataTypes.STRING(100),
         allowNull:false, //no debe tener un valor nulo.
-        unique: true, //debe ser unico.
+        //unique: true, 
     },
 });

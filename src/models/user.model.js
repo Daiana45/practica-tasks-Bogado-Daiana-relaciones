@@ -1,6 +1,6 @@
 import { DataTypes } from "sequelize"; //
-import { sequelize, startDB } from "../config/database.js";
-import { PersonModel } from "./person.models.js";
+import { sequelize } from "../config/database.js";
+import { PersonModel } from "./person.model.js";
 
 export const UserModel = sequelize.define(
     "User", //si el de arriba esta en mayuscula.
