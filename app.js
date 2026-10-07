@@ -10,6 +10,7 @@ const PUERTO = 3000;
 app.use(express.json());
 
 //configuracion de las rutas, cuando ya tenemos las rutas definidas.
+//si o si deben estar para que se creen las tablas.
 app.use("/api",userRouter); //si recibe dos parametros primero recibe el de la ruta
 app.use("/api", taskRoutes);
 

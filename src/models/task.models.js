@@ -1,4 +1,3 @@
-import { FOREIGNKEYS } from "sequelize/lib/query-types";
 import { sequelize } from "../config/database.js";
 import { DataTypes } from "sequelize";
 import { UserModel } from "./user.models.js";
@@ -28,9 +27,9 @@ export const Task = sequelize.define("task", {
 
 //relaciones
 //relaciones uno a muchos.
-task.belongsTo(UserModel, {FOREIGNKEYS: "user_id", as:
+Task.belongsTo(UserModel, {ForeignKeys: "user_id", as:
     "author"}); //el as es un alias
 
     //hasmany muchas tareas
-UserModel.hasMany(task, {FOREIGNKEYS: "user_id", as:
+UserModel.hasMany(Task, {ForeingKeys: "user_id", as:
     "tareas"});
