@@ -9,7 +9,7 @@ export const UserRoleModel = sequelize.define(
 //si se quiere definir el id
 id:{
     type:DataTypes.INTEGER,
-    primaryKey:true,
+    primaryKey:true, //indica que el id es la clave primaria
     allowNull:false,
     unique: true,
     autoIncrement: true,
