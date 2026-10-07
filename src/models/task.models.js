@@ -22,7 +22,7 @@ export const Task = sequelize.define("task", {
         defaultValue: false, //es el valor si no se envia el campo.
     },
     //es referents es opcional. Cunado tenemos autorizacion y validacion:
-    //user_id:{ type:datatypes.integer, allownul:false, reference{models:"users", key:"id"}}} Cuando tenemos una relacion de uno a uto si va unique
+    //user_id:{ type:datatypes.integer, allownul:false, reference{models:"users", key:"id"}}} Cuando tenemos una relacion de uno a uto si va unique //si esto lo tenemos cuando desestructuramos en los controllers
 });
 
 //relaciones

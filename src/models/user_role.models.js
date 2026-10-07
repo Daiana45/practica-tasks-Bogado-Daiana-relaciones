@@ -4,10 +4,17 @@ import { UserModel } from "./user.models.js";
 import { RoleModel } from "./role.models.js";
 
 export const UserRoleModel = sequelize.define(
-    "User_Role", {
-    
+    "User_Role", 
+    {
+//si se quiere definir el id
+id:{
+    type:DataTypes.INTEGER,
+    primaryKey:true,
+    allowNull:false,
+    unique: true,
+    autoIncrement: true,
 },
-    
+},  
 );
 
 //relaciones
@@ -23,4 +30,6 @@ RoleModel.belongsToMany(UserModel,{
     through: UserRoleModel,
     foreignKey: "role_id",
     as: "users",
-})
+});
+
+//Sequelize usa through para decir la relacion entre User y Role se hace mediante UserRoleModel
