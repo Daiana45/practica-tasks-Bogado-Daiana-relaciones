@@ -1,5 +1,7 @@
+import { FOREIGNKEYS } from "sequelize/lib/query-types";
 import { sequelize } from "../config/database.js";
 import { DataTypes } from "sequelize";
+import { UserModel } from "./user.models.js";
 
 export const Task = sequelize.define("task", {
     id:{
@@ -20,4 +22,15 @@ export const Task = sequelize.define("task", {
         type: DataTypes.BOOLEAN,
         defaultValue: false, //es el valor si no se envia el campo.
     },
+    //es referents es opcional. Cunado tenemos autorizacion y validacion:
+    //user_id:{ type:datatypes.integer, allownul:false, reference{models:"users", key:"id"}}} Cuando tenemos una relacion de uno a uto si va unique
 });
+
+//relaciones
+//relaciones uno a muchos.
+task.belongsTo(UserModel, {FOREIGNKEYS: "user_id", as:
+    "author"}); //el as es un alias
+
+    //hasmany muchas tareas
+UserModel.hasMany(task, {FOREIGNKEYS: "user_id", as:
+    "tareas"});
