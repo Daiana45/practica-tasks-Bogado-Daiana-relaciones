@@ -8,6 +8,10 @@ export const PersonModel = sequelize.define(
     primaryKey: true,
     autoIncrement:true, //crea un modelo de sequelize
 },
+name:{
+type:DataTypes.STRING(100),
+allowNull: false,
+},
     Lastname:{
         type: DataTypes.STRING(100),
         allowNull:false, //no debe tener un valor nulo.

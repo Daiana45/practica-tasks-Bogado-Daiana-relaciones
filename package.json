@@ -19,8 +19,9 @@
   },
   "homepage": "https://github.com/Daiana45/practica-tasks-Bogado-Daiana-relaciones#readme",
   "dependencies": {
-    "dotenv": "^18.0.5",
+    "dotenv": "^18.0.6",
     "express": "^5.2.1",
+    "express-validator": "^7.3.2",
     "mysql2": "^3.24.5",
     "sequelize": "^6.37.8"
   }

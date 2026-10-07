@@ -1,10 +1,21 @@
 import { UserModel } from "../models/user.model.js"; //importa el modelo de usuatio, que es lo que nos permite hacer operaciones sobre la tabla.
 import { Task } from "../models/task.model.js";
+import { matchedData, validationResult } from "express-validator";
 
 export const createUser = async (req, res) => { //es una funcion flecha que recibe por parametro req y res. Maneja la creacion de un usuario, Desestructura del objeto lo que mando el cliente.
    //export nombrado. Nos permite exportar varias funciones del mismo archivo y se importa con llaves. crea un usuario, async la funcion es asincrona porque habla con la base de datos y eso tarda.
     try{
-    const {name, email, password} = req.body; //desestructuramos el objeto para validar. 
+    //const {name, email, password, person_id} = req.body; //desestructuramos el objeto para validar.  ya no son necesarios
+
+    const validatedData = matchedData(req);
+
+    //const errors = validationResult(req); //tiene una funcion de validation que recibe las req.
+
+    //if(!errors.esEmpty()) { //condicionl para evaluar si los errores son vacios o no.
+       //return res.status(400).json(errors);
+    //} ya no son necesarias por el archivo validate exportado en routes. 
+
+
 if(typeof name !== "string" || name.trim() === "" || name.length>100) {
           //typeof name !== "string" no es texto. name.trim() === "" esta vacio o solo tiene espacios, trim() quita los espacios y name.length > 100 supera los 100 caracteres permitidos.
 return res.status (400).json({message:"el nombre debe ser texto no vacio hasta los 100 caracteres"}); //si los datos no son validos, el codigo HTTP 400 Bad Request(el cliente mando algo incorrecto) y .json({message:...}) cuerpo de la respuesta en JSON con un mensaje claro.
@@ -32,7 +43,7 @@ return res.status (400).json({message:"el nombre debe ser texto no vacio hasta l
     if (existingUser) {
       return res.status(400).json({ message: "el email ya esta registrado" });
     }
-    const newUser = await UserModel.create({ name, email, password }); //user.create({..}) hace el INSERT y devueñve el registro creado, con su id.
+    const newUser = await UserModel.create(validatedData); //user.create({..}) hace el INSERT y devueñve el registro creado, con su id.
     return res.status(201).json({
       //201 created: el codigo correcto cuando se crea un recurso.
       message: "Usuario creado correctamente", //mensaje exitoso.

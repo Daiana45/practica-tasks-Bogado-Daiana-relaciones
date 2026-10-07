@@ -2,7 +2,17 @@ import { PersonModel } from "../models/person.model.js";
 
 export const createPerson = async (req, res) => {
     try {
-        const { Lastname } = req.body;
+        const { name, Lastname } = req.body;
+
+        if (
+            typeof name !== "string" ||
+            name.trim() === "" ||
+            name.length > 100
+        ) {
+            return res.status(400).json({
+                message: "el nombre debe ser texto no vacio de hasta 100 caracteres",
+            });
+        }
 
         if (
             typeof Lastname !== "string" ||
@@ -15,7 +25,7 @@ export const createPerson = async (req, res) => {
         }
 
         const existingPerson = await PersonModel.findOne({
-            where: { Lastname },
+            where: {name, Lastname },
         });
 
         if (existingPerson) {
@@ -25,6 +35,7 @@ export const createPerson = async (req, res) => {
         }
 
         const newPerson = await PersonModel.create({
+            name,
             Lastname,
         });
 
