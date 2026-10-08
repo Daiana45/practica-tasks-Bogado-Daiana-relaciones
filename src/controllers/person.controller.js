@@ -24,17 +24,17 @@ export const createPerson = async (req, res) => {
             });
         }
 
-        const existingPerson = await PersonModel.findOne({
+        const existingPerson = await PersonModel.findOne({ //busca el registro que cumpla con la condicion
             where: {name, Lastname },
         });
 
         if (existingPerson) {
             return res.status(400).json({
-                message: "el apellido ya esta registrado",
+                message: "la persona ya esta registrado",
             });
         }
 
-        const newPerson = await PersonModel.create({
+        const newPerson = await PersonModel.create({ //crea la persona
             name,
             Lastname,
         });
@@ -52,11 +52,11 @@ export const createPerson = async (req, res) => {
     }
 };
 
-export const getPersons = async (req, res) => {
-    try {
-        const persons = await PersonModel.findAll();
+export const getPersons = async (req, res) => { 
+    try { //aca no necesitamos ni req.params ni req.body porque pide todas
+        const persons = await PersonModel.findAll(); //findall devuelve todos
 
-        return res.status(200).json(persons);
+        return res.status(200).json(persons); //los envia como respuesta
 
     } catch (error) {
         return res.status(500).json({
@@ -65,3 +65,6 @@ export const getPersons = async (req, res) => {
         });
     }
 };
+
+
+//findOne → buscá un registro que cumpla una condición.findByPk → buscá un registro por su clave primaria.

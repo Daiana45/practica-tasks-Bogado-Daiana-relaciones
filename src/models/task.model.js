@@ -33,9 +33,9 @@ export const Task = sequelize.define("task", {
 //relaciones uno a muchos.
 //belongsTo significa pertenece a 
 //foreignKey cual es la columna que conecta a ambas tablas.
-Task.belongsTo(UserModel, {ForeignKeys: "user_id", as:
+Task.belongsTo(UserModel, {foreignKey: "user_id", as:
     "author"}); //el as es un alias
 
     //hasmany muchas tareas
-UserModel.hasMany(Task, {ForeingKeys: "user_id", as:
-    "tareas"});
+UserModel.hasMany(Task, {foreignKey: "user_id", as:
+    "tareas"}); //usamos un alias para que sequelize entienda en include quiero traer el User relacionado con esta Task mediante la asociacio llamada "alias"

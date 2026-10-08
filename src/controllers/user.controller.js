@@ -1,13 +1,13 @@
 import { UserModel } from "../models/user.model.js"; //importa el modelo de usuatio, que es lo que nos permite hacer operaciones sobre la tabla.
 import { Task } from "../models/task.model.js";
-import { matchedData, validationResult } from "express-validator";
+import { matchedData, validationResult } from "express-validator"; //validateResult sirve para obtener los errores producidos por las validaxiones que se ejecutaron sobre esa peticion.
 
 export const createUser = async (req, res) => { //es una funcion flecha que recibe por parametro req y res. Maneja la creacion de un usuario, Desestructura del objeto lo que mando el cliente.
    //export nombrado. Nos permite exportar varias funciones del mismo archivo y se importa con llaves. crea un usuario, async la funcion es asincrona porque habla con la base de datos y eso tarda.
     try{
     //const {name, email, password, person_id} = req.body; //desestructuramos el objeto para validar.  ya no son necesarios
 
-    const validatedData = matchedData(req);
+    const validatedData = matchedData(req); //matcheddata() pbtiene solamente los datos que fueron validados por express validator.
 
     //const errors = validationResult(req); //tiene una funcion de validation que recibe las req.
 
@@ -16,7 +16,7 @@ export const createUser = async (req, res) => { //es una funcion flecha que reci
     //} ya no son necesarias por el archivo validate exportado en routes. 
 
 
-if(typeof name !== "string" || name.trim() === "" || name.length>100) {
+if(typeof name !== "string" || name.trim() === "" || name.length>100) { //ya no tenemos la desestructuracion asi que no sriev
           //typeof name !== "string" no es texto. name.trim() === "" esta vacio o solo tiene espacios, trim() quita los espacios y name.length > 100 supera los 100 caracteres permitidos.
 return res.status (400).json({message:"el nombre debe ser texto no vacio hasta los 100 caracteres"}); //si los datos no son validos, el codigo HTTP 400 Bad Request(el cliente mando algo incorrecto) y .json({message:...}) cuerpo de la respuesta en JSON con un mensaje claro.
 }
@@ -40,6 +40,7 @@ return res.status (400).json({message:"el nombre debe ser texto no vacio hasta l
       });
     }
     const existingUser = await UserModel.findOne({ where: { email } }); //findOne busca un registro, where:{email} es la condicion y await espera el resultado de la base.
+    //como ya no esta la desestructructuracion seria const existingUser = await UserModel.findOne({where:{email: validateData.email}})
     if (existingUser) {
       return res.status(400).json({ message: "el email ya esta registrado" });
     }

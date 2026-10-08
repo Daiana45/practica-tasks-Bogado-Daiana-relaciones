@@ -22,13 +22,13 @@ export const createTask = async(req, res) => {
 
 export const getTask = async(req, res) => {
     try{
-        const task = await Task.findAll({ //busca todas las tareas
+        const task = await Task.findAll({ //busca todas las tareas, pero ahora tambien traeme las tareas y ademas el usuario relacionado con cada una
             include:[ //ademas de las tareas quiero informacion relacionada
                 {
                     model: UserModel, //tiene que ser el modelo
-                    as: "author", //debe ser el id,
+                    as: "author", //debe ser el alias,
                     attributes: {
-                        exclude: ["password", "person_id"], //para excluir
+                        exclude: ["password", "person_id"], //para excluir, dice traeme las columnas excepto estas
                     },
                    // include:[ //otro include para traer otras relaciones
                        // {
@@ -55,7 +55,7 @@ export const getTasksById = async(req, res) => {
         //solo para una sola tarea.
         include:[
             {
-                modelo: UserModel,
+                model: UserModel,
                 as: "author",
                 attributes:{
                     exclude:["password", "person_id"],
@@ -66,7 +66,7 @@ export const getTasksById = async(req, res) => {
         if (!task) {
             return res.status(404).json({message:"tarea no encontrada"});
         } 
-        return res.status(201).json(task);
+        return res.status(200).json(task); //201 → recurso creado.200 → operación exitosa / consulta exitosa
     } catch(error){
         return res.status(500).json({message:"error al obtener la tarea", error: error.message});
     }

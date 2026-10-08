@@ -7,4 +7,4 @@ import {
 export const roleRouter = Router();
 
 roleRouter.post("/roles", createRole);
-roleRouter.get("/roles", getRoles);
+roleRouter.get("/roles", getRoles); //lo importante es no repetir el prefijo entre app.use () y las rutas internas del router

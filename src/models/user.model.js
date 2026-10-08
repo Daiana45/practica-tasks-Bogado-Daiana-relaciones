@@ -22,7 +22,7 @@ export const UserModel = sequelize.define(
             type: DataTypes.INTEGER,
             allowNull:false,
             unique: true,
-            references:{
+            references:{ //person_id referencia al id de la tabla person
                 model: "Person",
                 key: "id",
             },
@@ -32,11 +32,14 @@ export const UserModel = sequelize.define(
 
 //relaciones
 //uno a uno
+//belongsTo un usuario pertenece a una persona
 UserModel.belongsTo(PersonModel, {foreignKey: "person_id", as:
     "owner"
 });
 
+//foreignkey: person_id es la columna que conecta ambos modelos
 //una persona puedde tener un usuario.
+//hasone una persona tiene un usuario
 PersonModel.hasOne(UserModel, {foreignKey:"person_id", as:
     "user"
 });

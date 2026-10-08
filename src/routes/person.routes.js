@@ -6,6 +6,6 @@ import {
 
 export const personRouter = Router();
 
-personRouter.post("/persons", createPerson);
+personRouter.post("/persons", createPerson); //Eso significa que el router ya contiene /persons en cada ruta.
 
 personRouter.get("/persons", getPersons);

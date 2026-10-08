@@ -1,5 +1,5 @@
 import { RoleModel } from "../models/role.model.js";
-import { UserModel } from "../models/user.model.js";
+import { UserModel } from "../models/user.model.js"; //porque queremos saber los usuarios relacionados con cada role
 
 export const createRole = async (req, res) => {
     try {
@@ -45,11 +45,11 @@ export const createRole = async (req, res) => {
 export const getRoles = async (req, res) => {
     try {
         const roles = await RoleModel.findAll({
-            attributes: ["id", "name"],
-            include: [
+            attributes: ["id", "name"], //le estamos diciendo de este modelo, devolveme solamente estas columnas
+            include: [ //esto significa ademas de los roles, traeme tambien los registros relacionados
                 {
                     model: UserModel,
-                    as: "users",
+                    as: "users", //el id que pusimos en models
                     attributes: ["id", "name", "email"],
                 },
             ],

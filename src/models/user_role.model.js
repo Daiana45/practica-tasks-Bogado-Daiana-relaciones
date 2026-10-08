@@ -4,6 +4,7 @@ import { UserModel } from "./user.model.js";
 import { RoleModel } from "./role.model.js";
 
 export const UserRoleModel = sequelize.define(
+    //user_id y role_id son dos columnas que hacen la conexion
     "User_Role", 
     {
 //si se quiere definir el id

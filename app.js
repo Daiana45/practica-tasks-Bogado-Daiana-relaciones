@@ -18,7 +18,7 @@ app.use("/api", taskRoutes);
 app.use("/api", personRouter);
 app.use("/api", roleRouter);
 
-app.listen (PUERTO, async() => {
-    await startDB()
+app.listen (PUERTO, async() => { //se inicia el servidor en el puerto 3000. Cuando express empieza a escuchar, ejeccuta la funcion
+    await startDB() //dentro de esa funcion llamas a startDN()
     console.log(`servidor corriendo en el ${PUERTO}`)
 });

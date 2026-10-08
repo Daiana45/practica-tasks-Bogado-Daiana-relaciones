@@ -1,8 +1,8 @@
 import { sequelize } from "../config/database.js";
 import { DataTypes } from "sequelize";
 
-export const PersonModel = sequelize.define(
-    "Person", {
+export const PersonModel = sequelize.define( //nombre en js PersonModel
+    "Person", { //Person es el nombre del modelo de Sequelize 
     id:{
     type: DataTypes.INTEGER,
     primaryKey: true,

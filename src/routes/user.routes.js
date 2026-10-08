@@ -5,7 +5,8 @@ import { createUserValidation } from "../middlewares/validations/user.validation
 
 
 export const userRouter = Router(); //crea un router nuevo y lo exporta. Es el mismo userRouter que el archivo app.js monta con app.use("/api", userRouter)
-userRouter.post("/users", createUserValidation, validate,createUser); //metodo post, recibe dos parametros; uno es la ruta a la que debe apuntar y el segundo es una funcion que tiene el res y req. la ruta completa es /api/users. 
+userRouter.post("/users", createUserValidation, validate , createUser); //metodo post, recibe dos parametros; uno es la ruta a la que debe apuntar y el segundo es una funcion que tiene el res y req. la ruta completa es /api/users. 
+//lo ejecuta de izqquiera a derecha, createUserValidation define y ejecuta las reglas de validacion, validate revisa si esas reglas produjeron errores y createUser recien aca crea el usuario
 
 //userRouter.post("/users", body("email").notEmpty().withMessage("el email no debe estar vacio"), body("password").notEmpty().withMessage("la password no debe ser vacia"),validate,createUser); //metodo post, recibe dos parametros; uno es la ruta a la que debe apuntar y el segundo es una funcion que tiene el res y req. la ruta completa es /api/users. 
 //con el body validamos email que no este vacio. Son middlewares. Validate siempre debe estar despues de las validaciones. Ya no son necesarias porque se controlan en la carpeta validations
